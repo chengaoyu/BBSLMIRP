@@ -1,0 +1,5 @@
+Copyright 2017-2018 all BBSLMIRP contributors listed below:
+
+--> Chen Gaoyu
+
+This is BBSLMIRP version 1.0.
