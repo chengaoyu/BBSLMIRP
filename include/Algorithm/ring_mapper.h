@@ -18,13 +18,14 @@ public:
     RingMapper(const PETScanner& pet, const Projector& projector);
     virtual ~RingMapper();
 
-    virtual void  ComputeMap(Grid3D& map);
-
+    virtual void ComputeMap(Grid3D& map);
+    virtual void CutMap(Grid3D& map);
     virtual const PETScanner& get_pet(){return *pet;}
     virtual const Projector& get_projector(){return *projector;}
     //virtual Grid3D& get_map(){return *map;}
     // enumerate all the block pairs to compute the Map.
     virtual void Enumerate(Grid3D &map);
+
 
 private:
     const PETScanner*     pet;

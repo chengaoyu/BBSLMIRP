@@ -63,14 +63,18 @@ void MapTask::Run(const PETFactory& factory, const PETScanner& pet)const {
             projector = new SiddonProjector();
     }
     Mapper* mapper = factory.MakeMapper(pet,*projector);
-
-    Block bk;
-    bk.Initialize(this->get_grid(),this->get_map_size(),Point3D(0,0,0));
+    
+    ObliqueBlock bk;
+    bk.Initialize(this->get_grid(),this->get_map_size(),Point3D(0,0,0), 0, 0);
     Grid3D map;
     map.Initialize(bk);
     FileController fc;
     //compute the normaliztion map
     mapper->ComputeMap(map);
-    fc.SaveImage(this->get_map_name(),map);
+    // debug
+    // std::cout<<"pass here!"<<std::endl;
+
+    fc.SaveImageBin(this->get_map_name(),map);
 }
+
 }

@@ -8,6 +8,8 @@
 
 #include "obliqueblock.h"
 #include "ray.h"
+
+#include <limits>
 namespace BBSLMIRP {
 
 /* class---RayCast
@@ -81,6 +83,9 @@ int RayCast::SetupRayCastComponent(const Block& imgbox, const Ray& ray, int comp
         deltaT[comp] = v_res / r_pdir;
         deltaBuf[comp] = 1;
         inBuf[comp] = v_count - pos;
+        
+        //debug
+        // std::cout<<"r_pdir > 0"<<std::endl;
 
     } else if (r_pdir < 0.0) {
 
@@ -95,6 +100,8 @@ int RayCast::SetupRayCastComponent(const Block& imgbox, const Ray& ray, int comp
         deltaT[comp] = -v_res / r_pdir;
         deltaBuf[comp] = -1;
         inBuf[comp] = pos + 1;
+        // debug
+        // std::cout<<"r_pdir < 0"<<std::endl;
 
     } else {
 
@@ -103,8 +110,11 @@ int RayCast::SetupRayCastComponent(const Block& imgbox, const Ray& ray, int comp
 //        deltaT.setp(HUGE,comp);
 //        deltaBuf.setn(0,comp);
 //        inBuf.setn(1,comp);
-        nextT[comp] = HUGE;
-        deltaT[comp] = HUGE;
+        // debug
+        // std::cout<<"r_pdir = 0"<<std::endl;
+
+        nextT[comp] = std::numeric_limits<float>::max();
+        deltaT[comp] = std::numeric_limits<float>::max();
         deltaBuf[comp] = 0;
         inBuf[comp] = 1;
     }

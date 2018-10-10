@@ -14,7 +14,7 @@ class Filter{
 public:
     Filter();
     virtual ~Filter();
-    virtual Grid3D Kaiser(const Block& bk, float alpha,int order,float radius);
+    virtual Grid3D Kaiser(const ObliqueBlock& bk, float alpha,int order,float radius);
 private:
 };
 

@@ -30,6 +30,7 @@ public:
     virtual void SavePoint(std::ofstream& outStream,const Point3D& pt)const;
     // image file control
     virtual bool ReadImage(const std::string& image_name, Grid3D& image)const;
+    virtual bool ReadImageBin(const std::string& image_name, Grid3D& image)const;
     virtual bool SaveImage(const std::string& image_name, const Grid3D& image)const;
     virtual bool SaveImageBin(const std::string image_name, const Grid3D& image)const;
     // data file control(original event file, translated event file)

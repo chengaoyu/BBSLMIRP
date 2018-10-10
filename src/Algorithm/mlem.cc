@@ -11,7 +11,7 @@
 #include "projector.h"
 #include "datastruct.h"
 #include "filter.h"
-#include "./Geometry/block.h"
+#include "./Geometry/obliqueblock.h"
 namespace BBSLMIRP {
 
 MLEM::MLEM(){
@@ -89,7 +89,7 @@ void MLEM::Reconstruct(){
 
         if ((iter ) % this->output_interval == 0)
         {
-            fc.SaveImageBin(out_image_name +"_"+ std::to_string(iter) + "bin.rec", image_next);
+            fc.SaveImageBin(out_image_name +"_"+ std::to_string(iter) + ".img", image_next);
         }
     }
 
@@ -165,7 +165,7 @@ float MLEM::EM_Projection(Grid3D &ImgNow, Grid3D &ImgNext, LMEvent &lmevt) const
 void MLEM::ABF(Grid3D &image) const{
     Grid3D abf;
     Filter ft;
-    Block bok;
+    ObliqueBlock bok;
     GridSize gs1(8, 8, 8);
     bok.set_num_grid(gs1);
     abf = ft.Kaiser(bok, 10.4, 2, 2);
