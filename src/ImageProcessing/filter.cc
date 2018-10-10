@@ -5,7 +5,6 @@
 */
 
 #include "filter.h"
-
 namespace BBSLMIRP {
 Filter::Filter(){
 
@@ -15,7 +14,7 @@ Filter::~Filter(){
 
 }
 
-Grid3D Filter::Kaiser(const Block& bk, float alpha, int order, float radius){
+Grid3D Filter::Kaiser(const ObliqueBlock& bk, float alpha, int order, float radius){
     Grid3D ft;
     //ft.SetBlockGrid(bk.get_num_grid());
     ft.Initialize(bk);

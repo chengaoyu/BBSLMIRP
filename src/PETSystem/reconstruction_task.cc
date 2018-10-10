@@ -99,14 +99,14 @@ void ReconstructionTask::Run(const PETFactory&factory, const PETScanner& pet) co
     Translator* pet_translator = factory.MakeTranslator(pet);
     pet_translator->TranslateEvents(this->input_file,this->output_image_name);
 
-    Block bk;
-    bk.Initialize(this->get_grid(),this->get_image_size(),Point3D(0,0,0));
+    ObliqueBlock bk;
+    bk.Initialize(this->get_grid(),this->get_image_size(),Point3D(0,0,0),0,0);
 
     //read the normalization map
     Grid3D map;
     map.Initialize(bk);
     FileController fc;
-    fc.ReadImage(this->map_name,map);
+    fc.ReadImageBin(this->map_name,map);
 
     Projector *projector = NULL;
     if (this->projector_type == "siddon"){

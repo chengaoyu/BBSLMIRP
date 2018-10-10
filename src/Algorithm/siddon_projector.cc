@@ -79,6 +79,8 @@ void SiddonProjector::MappingLine(Ray &ray, Grid3D& map) const{
     const Block& box = map.get_block();
     //Ray& ray = Ray.get_ray();
     float LOR_length = ray.get_length();
+    // debug
+    // std::cout<<"mapping lines"<<std::endl;
     if(this->IsThroughImage(box,ray)){
         RayCast raycast;
         this->CastRay(box,ray,raycast);

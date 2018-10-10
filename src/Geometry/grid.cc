@@ -17,7 +17,7 @@ Grid3D::~Grid3D(){
 
 }
 
-bool Grid3D::Initialize(const Block& block){
+bool Grid3D::Initialize(const ObliqueBlock& block){
     this->block_origin = block;
     //this->block_origin.Initialize(block.get_num_grid(),block.get_geometry_size(),block.get_center());
     GridSize grid_size = block_origin.get_num_grid();
@@ -84,7 +84,7 @@ bool Grid3D::SizeCheck(const Grid3D& gd) const{
         return false;
 }
 
-const Block &Grid3D::get_block() const{
+const ObliqueBlock &Grid3D::get_block() const{
     return block_origin;
 }
 
@@ -209,8 +209,8 @@ void Grid3D::Conv3(const Grid3D &filter){
     GridSize filter_grid = filter.get_block().get_num_grid();
     GridSize image_grid = this->get_block().get_num_grid();
     GridSize filtered_grid = filter_grid+image_grid;
-    Block bok;
-    bok.Initialize(filtered_grid,Point3D(),Point3D());
+    ObliqueBlock bok;
+    bok.Initialize(filtered_grid,Point3D(),Point3D(), 0, 0);
     Grid3D filtered;
     filtered.Initialize(bok);
     //filtered.SetBlockGrid(filtered_grid);

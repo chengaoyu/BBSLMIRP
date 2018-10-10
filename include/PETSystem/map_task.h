@@ -21,6 +21,7 @@ public:
     virtual const GridSize& get_grid()const {return *grid;}
     virtual const Point3D& get_map_size()const{return *map_size;}
     virtual const std::string& get_map_name()const{return map_name;}
+    
 private:
     std::string projector_type;
     GridSize* grid;

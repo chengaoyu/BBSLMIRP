@@ -1,4 +1,4 @@
-# August 3 July 
+# August 3rd
 # Chen Gaoyu, chengaoyu2013@gmail.com
 # CMAKE compiling the BBSLMIRP reconstruction software
 
@@ -10,9 +10,15 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 # --------
 # Set the build type
+set( CMAKE_BUILD_TYPE "Debug -O0 -Wall -g -ggdb" )
 set( CMAKE_BUILD_TYPE "Release" CACHE STRING
     "Choose the type of build, options are: Debug Release"   
 )
+# set(CMAKE_BUILD_TYPE "Debug")
+# set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+# set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -O3 -Wall")
+
+
 
 #---------
 # Defining the project

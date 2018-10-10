@@ -47,6 +47,31 @@ bool FileController::ReadImage(const std::string &image_name, Grid3D &image) con
     }
     return true;
 }
+
+bool FileController::ReadImageBin(const std::string &image_name, Grid3D &image) const{
+    std::ifstream infile(image_name, std::ios_base::in);
+    if(! infile.good()){
+        std::cerr<<"ReadImg(): no file "<<image_name <<"!"<<std::endl;
+        std::exit(-1);
+    }
+    size_t nX = image.get_block().get_num_grid().get_num_x();
+    size_t nY = image.get_block().get_num_grid().get_num_y();
+    size_t nZ = image.get_block().get_num_grid().get_num_z();
+    for (size_t k=0; k<nZ;k++){
+        for(size_t j=0; j<nY; j++){
+            for(size_t i=0; i<nX; i++){
+                //define a mesh index.
+                MeshIndex mi(i,j,k);
+                float value;
+                //read the value of the image voxels.
+                infile.read((char*)&value,sizeof(float));
+                image.set_mesh(mi,value);
+            }
+        }
+    }
+    return true;
+}
+
 bool FileController::SaveImage(const std::string &image_name, const Grid3D &image) const{
     std::ofstream outfile(image_name, std::ios_base::out);
     if(! outfile.good()){

@@ -21,7 +21,7 @@ class Grid3D{
 public:
     Grid3D();
     virtual ~Grid3D();
-    virtual bool Initialize(const Block &);
+    virtual bool Initialize(const ObliqueBlock &);
 
     virtual void SetBlockGrid(const MeshIndex& block_grid);
 
@@ -32,7 +32,7 @@ public:
     virtual float get_mesh(int mi) const;
 
     //virtual void set_block(const VerticalBlock&);
-    virtual const Block& get_block() const;
+    virtual const ObliqueBlock& get_block() const;
     //sum the GDvalue in the grid.
     virtual float Sum() const;
     // compare the  blockgrid of two Grid3D object.
@@ -67,7 +67,7 @@ public:
 
 
 private:
-    Block block_origin;
+    ObliqueBlock block_origin;
     //the value in each mesh
     std::vector<std::vector<std::vector<float> > > mesh_value;
 };

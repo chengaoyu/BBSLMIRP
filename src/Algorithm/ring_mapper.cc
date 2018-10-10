@@ -12,6 +12,7 @@
 #include "block.h"
 #include "projector.h"
 #include "ray.h"
+#include "grid.h"
 
 namespace BBSLMIRP {
 RingMapper::RingMapper(const PETScanner &pet, const  Projector &projector){
@@ -25,9 +26,12 @@ RingMapper::~RingMapper(){
 
 void RingMapper::ComputeMap(Grid3D& map){
     this->Enumerate( map);
+    this->CutMap(map);
 }
 void RingMapper::Enumerate(Grid3D& map){
     int num_blocks = pet->get_num_blocks();
+    // debug
+    // std::cout<<"num_blocks:" <<num_blocks<<std::endl;
     double total_block_pairs = (num_blocks-1)*(num_blocks)/2;
     Point3D pt1,pt2;
     Ray ray;
@@ -43,6 +47,8 @@ void RingMapper::Enumerate(Grid3D& map){
         // get the first block
         const Block& block1 = pet->get_block(iBlock);
         int num_mesh1 = block1.GetTotalMeshes();
+        // debug
+        // std::cout<<"loop start"<<std::endl;
         for(int jBlock = iBlock+1; jBlock < num_blocks; jBlock++){
             //get another block
             const Block& block2 = pet->get_block(jBlock);
@@ -65,6 +71,24 @@ void RingMapper::Enumerate(Grid3D& map){
         std::cout << "cpu time: " << diff / 60 << " minutes,";
         std::cout << "time left: " << diff / 60 * left_pairs /(total_block_pairs - left_pairs) << "miuntes." << std::endl;
     }
+}
+
+void RingMapper::CutMap(Grid3D& map){
+    // ToDo: add the code to change the voxel values to very large when it is out of FOV.
+    float innerR = pet->get_inner_radius();
+    int num_meshes = map.get_block().GetTotalMeshes();
+
+    Point3D center = map.get_block().get_center();
+    for(int iMesh = 0; iMesh < num_meshes; iMesh++){
+        Point3D mpt;
+        mpt.set_pz(center.get_pz());
+        map.get_block().LocatePoint(iMesh,mpt);
+        float dis = (mpt-center).GetNorm2();
+        if (dis > 0.95*innerR){
+            map.set_mesh(iMesh, 0.0);
+        }
+    }
+
 }
 
 }
