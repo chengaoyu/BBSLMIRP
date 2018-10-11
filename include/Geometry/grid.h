@@ -12,7 +12,7 @@
 #include"obliqueblock.h"
 namespace BBSLMIRP{
 
-const float kEps = 0.00000001;
+const float kEps = 0.0000001;
 
 class GridSize;
 typedef GridSize MeshIndex;

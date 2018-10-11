@@ -63,8 +63,8 @@ void MLEM::Reconstruct(){
     {
         image_now = image_next;
         //'image_next' will aaccumulate the backprojection of the reciprocal line integrals of 'this->img'.
-        image_next.SetAllMeshes(0);
-        this->EM(image_now,image_next, 0, this->in_file_name);
+        image_next.SetAllMeshes(0.0);
+        this->EM(image_now,image_next, 0.0, this->in_file_name);
 
 //        float gavg = image_now.Sum()/ image_now.get_block().get_num_grid().GetTotalNumOfMeshes();
 //        Grid3D temp1 = image_now * image_now;
@@ -166,7 +166,7 @@ void MLEM::ABF(Grid3D &image) const{
     Grid3D abf;
     Filter ft;
     ObliqueBlock bok;
-    GridSize gs1(8, 8, 8);
+    GridSize gs1(4, 4, 4);
     bok.set_num_grid(gs1);
     abf = ft.Kaiser(bok, 10.4, 2, 2);
     image.Conv3(abf);

@@ -27,6 +27,7 @@ public:
   virtual int get_num_blocks() const = 0;
   virtual float get_inner_radius() const = 0;
   virtual float get_outer_radius() const = 0;
+  virtual float get_fov_ratio() const = 0;
   // Get the block in the block list by index.
   virtual int LocateBlock(const Point3D &pt) const = 0;
   virtual const Block &get_block(int block_index) const = 0;

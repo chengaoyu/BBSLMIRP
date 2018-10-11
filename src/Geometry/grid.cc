@@ -314,7 +314,7 @@ Grid3D Grid3D::operator/(const Grid3D& gd){
                 for(int iZ = 0; iZ < nZ;iZ++){
                     GridSize loc(iX,iY,iZ);
                     if(std::abs(gd.get_mesh(loc)) <= kEps){ // if the dividor is zero, set the result zero.
-                        divideGD.set_mesh(loc,this->get_mesh(loc));
+                        divideGD.set_mesh(loc, 0.0);
                     }
                     else{
                         float value = this->get_mesh(loc)/gd.get_mesh(loc);
