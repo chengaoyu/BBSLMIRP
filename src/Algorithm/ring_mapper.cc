@@ -84,7 +84,7 @@ void RingMapper::CutMap(Grid3D& map){
         mpt.set_pz(center.get_pz());
         map.get_block().LocatePoint(iMesh,mpt);
         float dis = (mpt-center).GetNorm2();
-        if (dis > 0.95*innerR){
+        if (dis > pet->get_fov_ratio()*innerR){
             map.set_mesh(iMesh, 0.0);
         }
     }

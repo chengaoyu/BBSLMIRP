@@ -27,6 +27,7 @@ void RingPET::Initialize(const std::string& scanner_file){
     int   nBlocks, nRings;
     int   nx, ny ,nz;
     float gx, gy, gz;
+    float fov_ratio = 0.95;
     std::string key;
     while(!configure.eof()){
        configure >> key;
@@ -48,6 +49,8 @@ void RingPET::Initialize(const std::string& scanner_file){
            configure>>nx>>ny>>nz;
        else if(key =="BlockSize:")
            configure>>gx>>gy>>gz;
+       else if(key =="FovRatio:")
+           configure>>fov_ratio;
        else{
 
        }
@@ -60,6 +63,7 @@ void RingPET::Initialize(const std::string& scanner_file){
     this->set_ring_gap(gap); //important.
     this->set_num_blocks_per_ring(nBlocks);
     this->set_num_rings(nRings);
+    this->set_fov_ratio(fov_ratio);
 
     ObliqueBlock vb;
     vb.Initialize(GridSize(nx,ny,nz),Point3D(gx,gy,gz),Point3D(0,0,0),0,0);

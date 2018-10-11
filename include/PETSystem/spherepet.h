@@ -28,9 +28,10 @@ public:
     // setter and getter
     virtual void set_inner_radius(float radius) { this->inner_radius = radius; }
     virtual void set_outer_radius(float radius) { this->outer_radius = radius; }
+    virtual void set_fov_ratio(float fov_ratio){this->fov_ratio = fov_ratio;}
     virtual float get_inner_radius() const { return this->inner_radius; }
     virtual float get_outer_radius() const { return this->outer_radius; }
-
+    virtual float get_fov_ratio()const {return this->fov_ratio;}
     virtual void set_mesh_size(const Point3D& mesh_size){this->mesh_size = mesh_size;}
     virtual const Point3D& get_mesh_size()const{
         return mesh_size;
@@ -41,6 +42,7 @@ public:
 private:
     float inner_radius;
     float outer_radius;
+    float fov_ratio;
     Point3D mesh_size;
     std::vector<ObliqueBlock> block_list;
     std::vector<Patch> patch_list;

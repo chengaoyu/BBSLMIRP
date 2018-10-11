@@ -30,6 +30,7 @@ public:
     // setter and getter
     virtual void set_inner_radius(float radius) { this->inner_radius = radius; }
     virtual void set_outer_radius(float radius) { this->outer_radius = radius; }
+    virtual void set_fov_ratio(float fov_ratio){this->fov_ratio = fov_ratio;}
     virtual void set_height(float height) { this->height = height; }
     virtual void set_ring_gap(float ring_gap) { this->ring_gap = ring_gap; }
     virtual void set_num_rings(int nRings) { this->num_rings = nRings; }
@@ -37,6 +38,7 @@ public:
 
     virtual float get_inner_radius() const { return this->inner_radius; }
     virtual float get_outer_radius() const { return this->outer_radius; }
+    virtual float get_fov_ratio()const {return this->fov_ratio;}
     virtual float get_height() const { return this->height; }
     virtual float get_ring_gap() const { return this->ring_gap; }
     virtual int   get_num_rings() const { return this->num_rings; }
@@ -48,6 +50,7 @@ public:
   private:
     float inner_radius;
     float outer_radius;
+    float fov_ratio;
     float height;
     float ring_gap;
     int   num_rings;
